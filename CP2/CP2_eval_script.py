@@ -5,33 +5,34 @@ from sklearn.metrics import roc_curve, roc_auc_score
 import sys
 import json
 
-# how to use: python CP1_eval_script.py ground_truth_sample_CP1.json submission_sample_CP1.json
+# how to use: python CP2_eval_script.py ground_truth_sample_CP2.json submission_sample_CP2.json
 
 ################################################
-# do not edit - eval data
+# ground truth data
 gt_id = []
-gt_phones = []
 gt_scores = []
 gt_outputs = open(sys.argv[1], "r")
+# set of difficulty levels to evaluate
+#TODO: CAN THIS PARAMETER BE REMOVED AND ASSUME EVALUATE ALL?
+difficulties = ["easy", "medium", "hard"]
 for line in gt_outputs:
     entry = json.loads(line)
-    gt_id.append(entry['cdr_id'])
-    gt_phones.append(entry['phone'])
-    gt_scores.append(entry['class'])
+    if entry['type'] in difficulties:
+        gt_id.append(entry['id'])
+        gt_scores.append(entry['class'])
 gt_outputs.close()
 ################################################
 
 ################################################
-# group data ingest - edit to fit your data as needed
+# submission data
 sub_id = []
-sub_phones = []
 sub_scores = []
 sub_outputs = open(sys.argv[2], "r")
 for line in sub_outputs:
     entry = json.loads(line)
-    sub_phones.append(entry['phone'])
-    sub_id.append(entry['cdr_id'])
-    sub_scores.append(entry['score'])
+    if entry['id'] in gt_id:
+        sub_id.append(entry['id'])
+        sub_scores.append(entry['score'])
 sub_outputs.close()
 ################################################
 
