@@ -28,7 +28,7 @@ This file provides a sample of expected output of the evaluation script when run
 
 The file contains an image showing the reciever operating characteristic (ROC) curve for the evaluation of the submission data against the ground truth data.  The value of the area under the curve (AUC) is also noted at the top of the figure.
 
-Note that while this sample output file is in PDF format, the output format is variable and is dependent on the tag of the output file name provided in the command to run the evaluation script.  For example, substituting `output_sample.pdf` for `output_sample.png` in the example usage command below will produce an output file format of PNG rather than PDF.
+Note that while this sample output file is in PDF format, the output format is variable and is dependent on the tag of the output file name provided in the command to run the evaluation script.  For example, substituting `output_sample_CP1.pdf` for `output_sample_CP1.png` in the example usage command below will produce an output file format of PNG rather than PDF.
 
 ### Example Usage
 
