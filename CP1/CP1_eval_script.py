@@ -5,7 +5,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 import sys
 import json
 
-# how to use: python CP1_eval_script.py ground_truth_sample_CP1.json submission_sample_CP1.json
+# how to use: python CP1_eval_script.py ground_truth_sample_CP1.json submission_sample_CP1.json output_sample_CP1.pdf
 
 ################################################
 # do not edit - eval data
@@ -45,9 +45,12 @@ if any([a != b for a, b in zip(sub_id, gt_id)]):
 else:
     fpr ,tpr, thresholds = roc_curve(gt_scores, sub_scores)
     auc = roc_auc_score(gt_scores, sub_scores)
-    print 'ROC-AUC is:', auc
-    print 'ROC curve plotting'
+    fig = plt.figure()
     plt.plot(fpr, tpr, '.-')
     plt.xlim(-0.01, 1.01)
     plt.ylim(-0.01, 1.01)
-    plt.show()
+    title = 'ROC-AUC = {0}'.format(auc)
+    plt.title(title)
+    plt.ylabel("True Positive Rate")
+    plt.xlabel("False Positive Rate")
+    plt.savefig(sys.argv[3])
