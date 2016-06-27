@@ -1,54 +1,41 @@
 #!/usr/bin/env python
-
-import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, roc_auc_score
 import sys
+import tldextract
 import json
 
-# how to use: python CP2_eval_script.py ground_truth_sample_CP2.json submission_sample_CP2.json
+# how to use: python CP3_eval_script.py ground_truth_sample_CP3.json submission_sample_CP3.json
 
 ################################################
 # ground truth data
-gt_id = []
-gt_scores = []
 gt_outputs = open(sys.argv[1], "r")
-# set of difficulty levels to evaluate
-#TODO: CAN THIS PARAMETER BE REMOVED AND ASSUME EVALUATE ALL?
-difficulties = ["easy", "medium", "hard"]
-for line in gt_outputs:
-    entry = json.loads(line)
-    if entry['type'] in difficulties:
-        gt_id.append(entry['id'])
-        gt_scores.append(entry['class'])
-gt_outputs.close()
+gt_sites = [line.rstrip('\n') for line in gt_outputs]
+gt_domains = set([tldextract.extract(url).registered_domain for url in gt_sites])
+gt_urls = set([url.split("://")[-1] for url in gt_sites])
 ################################################
 
 ################################################
 # submission data
-sub_id = []
-sub_scores = []
 sub_outputs = open(sys.argv[2], "r")
-for line in sub_outputs:
-    entry = json.loads(line)
-    if entry['id'] in gt_id:
-        sub_id.append(entry['id'])
-        sub_scores.append(entry['score'])
-sub_outputs.close()
+sub_docs = [json.loads(line) for line in sub_outputs]
+sub_sites =[doc['url'] for doc in sub_docs]
+sub_domains = set([tldextract.extract(url).registered_domain for url in sub_sites])
+sub_urls = set([url.split("://")[-1] for url in sub_sites])
 ################################################
 
 ################################################
-# ids should be well-ordered, but just in case...
-# note that if you did not include ids but instead only phone numbers in your file, the below needs modification
-if any([a != b for a, b in zip(sub_id, gt_id)]):
-    print 'submission ids do not match ground truth ids, please check submission data'   
+# Domain level recall
+domains = gt_domains & sub_domains
+print "\nHost Names"
+print "Ground truth Host Names:\t", len(gt_domains)
+print "HostName Overlap:\t", len(domains)
+print "Recall:\t", (len(domains) * 100)/float(len(gt_domains))
 ################################################ 
 
-else:
-    fpr ,tpr, thresholds = roc_curve(gt_scores, sub_scores)
-    auc = roc_auc_score(gt_scores, sub_scores)
-    print 'ROC-AUC is:', auc
-    print 'ROC curve plotting'
-    plt.plot(fpr, tpr, '.-')
-    plt.xlim(-0.01, 1.01)
-    plt.ylim(-0.01, 1.01)
-    plt.show()
+################################################
+# URL level recall
+results = gt_urls & sub_urls
+print "\nURLs"
+print "Ground truth Sample Size:\t", len(gt_urls)
+print "Overlap:\t", len(results)
+print "Recall:\t", (len(results) * 100)/float(len(gt_urls))
+################################################ 
