@@ -36,10 +36,18 @@ The file contains an image showing the reciever operating characteristic (ROC) c
 
 Note that while this sample output file is in PDF format, the output format is variable and is dependent on the tag of the output file name provided in the command to run the evaluation script.  For example, substituting `output_sample_CP2.pdf` for `output_sample_CP2.png` in the example usage command below will produce an output file format of PNG rather than PDF.
 
-### Example Usage
+### Example Usages
 
-Note that the file names given in the example usage command below (i.e., `ground_truth_sample_CP1.json submission_sample_CP1.json output_sample_CP1.pdf`) are example file names and can be substituted for the appropriate file names.
+Note that the file names given in the example usage command below (i.e., `ground_truth_sample_CP2.json submission_sample_CP2.json output_sample_CP2.pdf`) are example file names and can be substituted for the appropriate file names.
 
-To run the evaluation of submission data contained in a file named `submission_sample_CP1.json` against ground truth data contained in a file named `ground_truth_sample_CP1.json` and save the output to a new file names `output_sample_CP1.pdf` use:
+Also note that the arguments given after the file name of the `output_sample_CP2.pdf` file are *optional* arguments that list the level of match difficulty to be assessed in the evaluation workflow.
 
-`python CP1_eval_script.py ground_truth_sample_CP1.json submission_sample_CP1.json output_sample_CP1.pdf`
+Therefore, to run the evaluation of submission data contained in a file named `submission_sample_CP2.json` against ground truth data contained in a file named `ground_truth_sample_CP2.json` and save the output to a new file names `output_sample_CP2.pdf` while *only assessing matches with difficulty level "medium" or "hard":*
+
+`python CP2_eval_script.py ground_truth_sample_CP2.json submission_sample_CP2.json output_sample_CP2.pdf medium hard`
+
+Similarly, to run the evaluation of submission data contained in a file named `submission_sample_CP2.json` against ground truth data contained in a file named `ground_truth_sample_CP2.json` and save the output to a new file names `output_sample_CP2.pdf` while *only assessing matches with difficulty level "easy" or "hard":*
+
+`python CP2_eval_script.py ground_truth_sample_CP2.json submission_sample_CP2.json output_sample_CP2.pdf easy hard`
+
+Note that if no difficulty levels are provided, all difficulty levels (i.e., "easy", "medium", and "hard") will be assessed by default.
