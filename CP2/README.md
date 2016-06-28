@@ -14,9 +14,9 @@ class: An integer that takes values 0 or 1 and indicates if the entity match is 
 
 type: A string that takes values "easy", "medium", or "hard" and indicates the difficulty level of determining if the entity match is negative or positive
 
-agora: The username found in an advertisement on the Agora site
+site_1: The username found on `site_1`
 
-nucleus: The username found in an advertisement on the Nucleus site
+site_2: The username found on `site_2`
 
 ### submission_sample_CP2.json
 This file contains the data submitted by the team, which is to be compared against the known ground truth data.  Each line of this file is a JSON formatted dictionary with the following key-value pairs:
@@ -25,9 +25,9 @@ id: An integer that gives the value of the id of the entity match
 
 score: An number that takes values between 0 and 1 inclusively, and is a measure of the probability that the two entities given are a positive match, with values closer to 1 indicating a higher probability that the entities are a match.
 
-agora: The username found in an advertisement on the Agora site
+site_1: The username found on `site_1`
 
-nucleus: The username found in an advertisement on the Nucleus site
+site_2: The username found on `site_2`
 
 ### output_sample_CP2.pdf
 This file provides a sample of expected output of the evaluation script when run on the sample data files provided with the example usage command shown below.

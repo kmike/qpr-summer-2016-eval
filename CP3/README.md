@@ -9,9 +9,9 @@ This is the Python script that will be used to compare team submission data agai
 This file contains the known ground truth data against which team submissions will be compared.  Each line of this file is a string indicating the full URL path to a website used in the investigation of a question.
 
 ### submission_sample_CP3.json
-This file contains the data submitted by the team, which is to be compared against the known ground truth data.  Each line of this file is a JSON formatted dictionary which exactly matches the CDR source document containing information about the crawl which was used in the investigation of the question.
+This file contains the data submitted by the team, which is to be compared against the known ground truth data.  Each line of this file is a JSON formatted dictionary in the CDR format containing information about the crawl which was used in the investigation of the question.
 
-**NOTE:** The JSON formatted dictionary should reflect the CDR **source** document.  Therefore, it should contain **top-level** dictionary keys that include: `crawl_data`, `url`, `timestamp`, `team`, `raw_content`, etc.  These keys are expected at the top-level of the dictionary, and no other keys above this level should be present in the dictionary.
+**NOTE:** The JSON formatted dictionary should reflect the CDR format and should therefore contain **top-level** dictionary keys that include: `crawl_data`, `url`, `timestamp`, `team`, `raw_content`, etc.  This schema is described on the [Memex Wiki](https://memexproxy.com/wiki/display/MPM/CDR+Schema). These keys are expected at the top-level of the dictionary, and no other keys above this level should be present in the dictionary.
 
 The value associated with the `url` key will be the URL path that is compared to the ground truth URL data.
 
