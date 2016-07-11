@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
 import sys
 import json
+
 
 # how to use: python CP1_eval_script.py ground_truth_sample_CP1.json submission_sample_CP1.json output_sample_CP1.pdf
 
@@ -39,7 +41,7 @@ sub_outputs.close()
 # ids should be well-ordered, but just in case...
 # note that if you did not include ids but instead only phone numbers in your file, the below needs modification
 if any([a != b for a, b in zip(sub_id, gt_id)]):
-    print 'submission ids do not match ground truth ids, please check submission data'   
+    print('submission ids do not match ground truth ids, please check submission data')
 ################################################ 
 
 else:
