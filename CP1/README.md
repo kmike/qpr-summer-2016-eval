@@ -12,7 +12,7 @@ cdr_id: The document id (i.e., `_id`) of the CDR document from which the phone n
 
 phone: The phone number extracted from the CDR document
 
-class: An integer that takes values 0 or 1 and indicates if the phone number is a negative (0) or positive (1)
+ class: An integer that takes values 0 or 1 and indicates if the phone number is a negative (0) or positive (1)
 
 ### submission_sample_CP1.json
 This file contains the data submitted by the team, which is to be compared against the known ground truth data.  Each line of this file is a JSON formatted dictionary with the following key-value pairs:
