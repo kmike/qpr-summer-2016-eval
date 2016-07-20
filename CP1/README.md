@@ -8,20 +8,16 @@ This is the Python script that will be used to compare team submission data agai
 ### ground_truth_sample_CP1.json
 This file contains the known ground truth data against which team submissions will be compared.  Each line of this file is a JSON formatted dictionary with the following key-value pairs:
 ##### key: value
-cdr_id: The document id (i.e., `_id`) of the CDR document from which the phone number was extracted
+cluster_id: Cluster id assigned to test set of clusters
 
-phone: The phone number extracted from the CDR document
-
- class: An integer that takes values 0 or 1 and indicates if the phone number is a negative (0) or positive (1)
+class: An integer that takes values 0 or 1 and indicates if associated cluster is related to human-trafficking.
 
 ### submission_sample_CP1.json
 This file contains the data submitted by the team, which is to be compared against the known ground truth data.  Each line of this file is a JSON formatted dictionary with the following key-value pairs:
 ##### key: value
-cdr_id: The document id (i.e., `_id`) of the CDR document from which the phone number was extracted
+cluster_id: Cluster id assigned to clusters
 
-phone: The phone number extracted from the CDR document
-
-score: An number that takes values between 0 and 1 inclusively, and is a measure of the probability that the extracted phone number is a positive, with values closer to 1 indicating a higher probability that the phone number is a positive
+score: An number that takes values between 0 and 1 inclusively, and is a measure of the probability that the extracted cluster is a positive, with values closer to 1 indicating a higher probability that the phone number is a positive
 
 ### output_sample_CP1.pdf
 This file provides a sample of expected output of the evaluation script when run on the sample data files provided with the example usage command shown below.
