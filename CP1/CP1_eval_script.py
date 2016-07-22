@@ -35,7 +35,7 @@ sub_outputs.close()
 # ids should be well-ordered, but just in case...
 # note that if you did not include ids but instead only phone numbers in your file, the below needs modification
 if any([a != b for a, b in zip(sub_id, gt_id)]):
-    print 'submission ids do not match ground truth ids, please check submission data'   
+    print  ('submission ids do not match ground truth ids, please check submission data')   
 ################################################ 
 
 else:
