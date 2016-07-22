@@ -13,7 +13,7 @@ gt_id = []
 gt_scores = []
 gt_outputs = open(sys.argv[1], "r")
 for line in gt_outputs:
-    entry = json.loads(lines)
+    entry = json.loads(line)
     gt_id.append(entry['cluster_id'])
     gt_scores.append(entry['class'])
 gt_outputs.close()
