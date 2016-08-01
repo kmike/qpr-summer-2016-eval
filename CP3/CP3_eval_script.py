@@ -23,8 +23,7 @@ gt_urls = set([url.split("://")[-1] for url in gt_sites])
 ################################################
 # submission data
 sub_outputs = open(sys.argv[2], "r")
-sub_docs = [json.loads(line) for line in sub_outputs]
-sub_sites =[doc['url'] for doc in sub_docs]
+sub_sites = [line.rstrip('\n') for line in sub_outputs]
 sub_domains = set([get_domain(url) for url in sub_sites])
 sub_urls = set([url.split("://")[-1] for url in sub_sites])
 ################################################
