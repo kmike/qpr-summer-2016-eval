@@ -1,0 +1,9 @@
+Host Names
+Ground truth Host Names:	 620
+HostName Overlap:	 279
+Recall:	 45.0
+
+URLs
+Ground truth Sample Size:	 32135
+Overlap:	 135
+Recall:	 0.420102691769
