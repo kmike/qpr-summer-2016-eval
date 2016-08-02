@@ -2,81 +2,81 @@
   "Aggregate": {
     "1486": {
       "query": "1486 - Please find and list all the ads posted in Eugene, OR with indicators of multiple individuals being advertised, in the answer field note how many individuals are advertised for each ad. Return the maximum count of individuals in an ad.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?number_of_individuals (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Eugene, OR' ; qpr:number_of_individuals ?number_of_individuals .  } GROUP BY ?number_of_individuals ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?number_of_individuals (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Eugene, OR' ; qpr:number_of_individuals ?number_of_individuals . FILTER( ?number_of_individuals > 1 ) } GROUP BY ?number_of_individuals ORDER BY DESC(?count) LIMIT 5"
     },
     "1493": {
       "query": "1493 - Please find and list all the ads in Rochester, NY posted with indicators of multiple individuals being advertised, in the answer field note how many individuals are advertised for each ad. Return the least frequently occurring number of individuals.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?number_of_individuals (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Rochester, NY' ; qpr:number_of_individuals ?number_of_individuals .  } GROUP BY ?number_of_individuals ORDER BY ?count LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?number_of_individuals (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Rochester, NY' ; qpr:number_of_individuals ?number_of_individuals . } GROUP BY ?number_of_individuals ORDER BY ?count LIMIT 5"
     },
     "1505": {
       "query": "1505 - Please find and list all of the ads in Seattle, WA that include an ethnicity in the ad text. In the answer field note the ethnicity for each ad. If there are multiple answers separate them with a comma. Return the most frequently occurring ethnicity.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ethnicity  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Seattle, WA' ; qpr:ethnicity ?ethnicity . } GROUP BY ?ethnicity ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ethnicity (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Seattle, WA' ; qpr:ethnicity ?ethnicity . } GROUP BY ?ethnicity ORDER BY DESC(?count) LIMIT 5"
     },
     "1519": {
       "query": "1519 - Please find and list all of the ads in Bangalore, India that include an ethnicity in the ad text. In the answer field note the ethnicity for each ad. If there are multiple answers separate them with a comma. Return the least frequently occurring ethnicity.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ethnicity  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Bangalore, India' ; qpr:ethnicity ?ethnicity . } GROUP BY ?ethnicity ORDER BY ?count LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ethnicity (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Bangalore, India' ; qpr:ethnicity ?ethnicity . } GROUP BY ?ethnicity ORDER BY ?count LIMIT 5"
     },
     "1564": {
       "query": "1564 - Please find and list all of the ads in Flagstaff, AZ that mention a review site via link, text or image. In the answer field note what review site was mentioned (examples of review sites include, but are not limited to eccie, TER, or preferred411). If there are multiple answers separate them with a comma. Return the least frequently occurring review site.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Flagstaff, AZ' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY ?count LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Flagstaff, AZ' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY ?count LIMIT 5"
     },
     "1566": {
       "query": "1566 - Please find and list all of the ads in Fayetteville, AR that mention a review site via link, text or image. In the answer field note what review site was mentioned (examples of review sites include, but are not limited to eccie, TER, or preferred411) If there are multiple answers separate them with a comma. Return the most frequently occurring review site.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Fayetteville, AR' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Fayetteville, AR' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY DESC(?count) LIMIT 5"
     },
     "1567": {
       "query": "1567 - Please find and list all of the ads in Capetown, South Africa that mention a review site via link, text or image. In the answer field note what review site was mentioned. (Examples of review sites include, but are not limited to eccie, TER, or preferred411). Return the most frequently occurring review site.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Capetown, South Africa' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?review_site (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Capetown, South Africa' ; qpr:review_site ?review_site . } GROUP BY ?review_site ORDER BY DESC(?count) LIMIT 5"
     },
     "1575": {
       "query": "1575 - Please find and list all of the ads in Dubai, UAE that mention an escort being from a foreign country. In the answer field note the name of that country for each ad. If there are multiple answers separate them with a comma. Return the most frequently occurring country.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?nationality  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Dubai, UAE'; qpr:nationality ?nationality . FILTER(?nationality != 'Emirati') } GROUP BY ?nationality ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?nationality (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Dubai, UAE'; qpr:nationality ?nationality . FILTER(?nationality != 'Emirati') } GROUP BY ?nationality ORDER BY DESC(?count) LIMIT 5"
     },
     "1577": {
       "query": "1577 - Please find and list all of the ads in Galveston, TX that mention an escort being from a foreign country. In the answer field note the name of that country for each ad. If there are multiple answers separate them with a comma. Return the least frequently occurring country.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?nationality  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Galveston, TX' ; qpr:nationality ?nationality . FILTER(?nationality != 'American') } GROUP BY ?nationality ORDER BY ?count LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?nationality (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Galveston, TX' ; qpr:nationality ?nationality . FILTER(?nationality != 'American') } GROUP BY ?nationality ORDER BY ?count LIMIT 5"
     },
     "1582": {
       "query": "1582 - Please find and list all of the ads in Vermont for Spas or Massage Parlors that offer sex services. In the answer field note the full name of the spa and/or the street address for each ad. If both address and business name are provided, note each separated by a comma. Return the most frequently occurring business.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Vermont' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business } GROUP BY ?business ORDER BY ?count"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Vermont' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business . } GROUP BY ?business ORDER BY DESC(?count) LIMIT 5"
     },
     "1584": {
       "query": "1584 - Please find and list all of the ads in Philadelphia, PA for Spas or Massage Parlors that offer sex services. In the answer field note the full name of the spa and/or the street address for each ad. If both address and business name are provided, note each separated by a comma. Return the most frequently occurring business.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Philadelphia, PA' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business } GROUP BY ?business ORDER BY ?count"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Philadelphia, PA' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business . } GROUP BY ?business ORDER BY DESC(?count) LIMIT 5"
     },
     "1592": {
       "query": "1592 - Please find and list all of the ads in Fargo, ND for Spas or Massage Parlors that offer sex services. In the answer field note the full name of the spa and/or the street address for each ad. If both address and business name are provided, note each separated by a comma. Return the least frequently occurring business.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business  (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads)   WHERE { ?ad a qpr:Ad ; qpr:location 'Fargo, ND' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business } GROUP BY ?business ORDER BY ?count"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Fargo, ND' ; qpr:business_type ?bt . FILTER(?bt = 'Spa' || ?bt = 'Massage Parlor') ?ad qpr:services 'sex' ; qpr:business ?business . } GROUP BY ?business ORDER BY ?count LIMIT 5"
     },
     "1595": {
       "query": "1595 - Please find and list all of the ads in Delhi, India that include hair color in the ad text. In the answer field note the hair color for each ad. If there are multiple answers separate them with a comma. Return the least frequently occurring hair color.",
-      "sparql": "PREFIX qpr:<http://istresearch.com/qpr> SELECT ?hair_color (count(?ad) AS ?count)(group_concat(?ad;separator=\",\") AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Delhi, India' ; qpr:hair_color ?hair_color . } GROUP BY ?ad ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?hair_color (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Delhi, India' ; qpr:hair_color ?hair_color . } GROUP BY ?hair_color ORDER BY ?count LIMIT 5"
     },
     "1602": {
       "query": "1602 - Please find and list all of the ads in Bangkok, Thailand that include hair color in the ad text. In the answer field note the hair color for each ad. If there are multiple answers separate them with a comma. Return the most frequently occurring hair color.",
-      "sparql": "PREFIX qpr:<http://istresearch.com/qpr> SELECT ?hair_color (count(?ad) AS ?count)(group_concat(?ad;separator=\",\") AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Bangkok,Thailand' ; qpr:hair_color ?hair_color . } GROUP BY ?ad ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?hair_color (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Bangkok,Thailand' ; qpr:hair_color ?hair_color . } GROUP BY ?hair_color ORDER BY DESC(?count) LIMIT 5"
     },
     "1608": {
       "query": "1608 - Please find and list all of the ads in Vancouver, BC, Canada that advertise for an escort agency. In the answer field please note the name of the escort agency. If there are multiple answers separate them with a comma. Return the most frequently occurring escort agency.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business_name (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Vancouver, BC, Canada' ; qpr:business_type 'escort agency' ; qpr:business_name ?business_name .  } GROUP BY ?business_name ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business_name (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Vancouver, BC, Canada' ; qpr:business_type 'escort agency' ; qpr:business_name ?business_name . } GROUP BY ?business_name ORDER BY DESC(?count) LIMIT 5"
     },
     "1612": {
       "query": "1612 - Please find and list all of the ads in Glasgow, Scotland that advertise for an escort agency. In the answer field please note the name of the escort agency. If there are multiple answers separate them with a comma. Return the most frequently occurring escort agency.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business_name (count(?ad) AS ?count)(group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Glasgow, Scotland' ; qpr:business_type 'escort agency' ; qpr:business_name ?business_name . } GROUP BY ?business_name ORDER BY DESC(?count) LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?business_name (count(?ad) AS ?count) (group_concat(?ad;separator=',') AS ?ads) WHERE { ?ad a qpr:Ad ; qpr:location 'Glasgow, Scotland' ; qpr:business_type 'escort agency' ; qpr:business_name ?business_name . } GROUP BY ?business_name ORDER BY DESC(?count) LIMIT 5"
     }
   },
   "Point Fact": {
     "20": {
       "query": "20 - What is the ad with the earliest post date available online that contains the phone number 7075610282?",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '7075610282' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '7075610282' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 5"
     },
     "22": {
       "query": "22 - What is the ad with the earliest post date available online that contains the phone number 4784201625?",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '4784201625' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '4784201625' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 5"
     },
     "24": {
       "query": "24 - What is the ad with the earliest post date available online that contains the phone number 13222255761?",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '13222255761' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 1"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad WHERE { ?ad a qpr:Ad ; qpr:phone '13222255761' ; qpr:posting_date ?posting_date . } ORDER BY ?posting_date LIMIT 5"
     },
     "28": {
       "query": "28 - What is the eye color of the escort(s) advertised on GFEMonkey with the email address Phoenix01skye@gmail.com?",
@@ -128,7 +128,7 @@
     },
     "83": {
       "query": "83 - What are the review site IDs in the ad located in Los Angeles, CA with the ad title \"Los Angeles, California Female Escort & GFE available for Outcall.\" that advertises with the name Layla?",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad ?review_site WHERE { ?ad a qpr:Ad ; qpr:location 'Los Angeles, CA' ; qpr:title 'Los Angeles, California Female Escort & GFE available for Outcall.' ; qpr:name 'Layla' ; qpr:review_iste ?review_site . }"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?ad ?review_site WHERE { ?ad a qpr:Ad ; qpr:location 'Los Angeles, CA' ; qpr:title 'Los Angeles, California Female Escort & GFE available for Outcall.' ; qpr:name 'Layla' ; qpr:review_site ?review_site . }"
     },
     "88": {
       "query": "88 - What are the two phone numbers in the ad posted on June 30th in Bengaluru, India with the name Vishwas advertising 5 individuals?",
@@ -138,7 +138,7 @@
   "Cluster": {
     "1633.1837": {
       "query": "1633.1837 - Please find and list all of the ads connected via a shared phone number, email, or street address to the phone number 5105124396 that have also incorporated a phone number or email address from the ad into the images associated with the ad. The connection between ads can be multiple steps removed as long as there is a connection back to the original attribute via one of the listed attributes. For example, an ad could be considered connected if it contains an email that appeared in a different ad with a street address, which in yet another ad that street address appeared with the phone number 5105124396.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?cluster ?ad WHERE {    ?cluster a qpr:cluster ; qpr:seed '5105124396' ; qpr:ad ?ad ; OPTIONAL { ?ad qpr:image_with_phone ?iwp } OPTIONAL { ?ad qpr:image_with_email ?iwe } FILTER(bound(?iwp) || bound(?iwe)) }"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?cluster ?ad WHERE { ?cluster a qpr:cluster ; qpr:seed '5105124396' ; qpr:ad ?ad . OPTIONAL { ?ad qpr:image_with_phone ?iwp } OPTIONAL { ?ad qpr:image_with_email ?iwe } FILTER(bound(?iwp) || bound(?iwe)) }"
     },
     "1634.1818": {
       "query": "1634.1818 - Please find and list all of the ads connected via a shared phone number, email, or street address to the phone number 2131743855 that feature a white escort. The connection between ads can be multiple steps removed as long as there is a connection back to the original attribute via one of the listed attributes. For example, an ad could be considered connected if it contains an email that appeared in a different ad with a street address, which in yet another ad that street address appeared with the phone number 2131743855.",
@@ -194,7 +194,7 @@
     },
     "1694.1887": {
       "query": "1694.1887 - Please find and list all of the ads connected via a shared phone number, email, or street address to the phone number 3863346213 that feature some form of phone number obfuscation (spelled out, formatted oddly, or only used in images and not in the text). The connection between ads can be multiple steps removed as long as there is a connection back to the original attribute via one of the listed attributes. For example, an ad could be considered connected if it contains an email that appeared in a different ad with a street address, which in yet another ad that street address appeared with the phone number 3863346213.",
-      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?cluster ?ad WHERE {   ?cluster a qpr:cluster ; qpr:seed '3863346213' ; qpr:ofuscation ?ofuscation ; qpr:ad ?ad . }"
+      "sparql": "PREFIX qpr: <http://istresearch.com/qpr> SELECT ?cluster ?ad WHERE { ?cluster a qpr:cluster ; qpr:seed '3863346213' ; qpr:obfuscation ?obfuscation ; qpr:ad ?ad . }"
     },
     "1699.1889": {
       "query": "1699.1889 - Please find and list all of the ads connected via a shared phone number, email, or street address to the email easytoremember@mail.ua. The connection between ads can be multiple steps removed as long as there is a connection back to the original attribute via one of the listed attributes. For example, an ad could be considered connected if it contains a phone number that appeared in a different ad with a street address, which in yet another ad that street address appeared with the email easytoremember@mail.ua.",
