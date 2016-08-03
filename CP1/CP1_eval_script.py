@@ -32,10 +32,17 @@ sub_outputs.close()
 ################################################
 
 ################################################
-# ids should be well-ordered, but just in case...
 # note that if you did not include ids but instead only phone numbers in your file, the below needs modification
-if any([a != b for a, b in zip(sub_id, gt_id)]):
-    print  ('submission ids do not match ground truth ids, please check submission data')   
+# align ground truth and submission by cluster_id
+
+gt_id, gt_scores = zip(*sorted(zip(gt_id, gt_scores), key=lambda(x):x[0]))
+sub_id, sub_scores = zip(*sorted(zip(sub_id, sub_scores), key=lambda(x):x[0]))
+
+if len(gt_scores) != len(sub_scores):
+    print ('submission line total {} does not match expected {}'.format(len(sub_scores), len(gt_scores)))
+
+elif any([a != b for a, b in zip(sub_id, gt_id)]):
+    print  ('submission ids do not match ground truth ids, please check submission data')
 ################################################ 
 
 else:
