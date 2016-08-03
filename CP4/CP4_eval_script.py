@@ -4,8 +4,8 @@ import json
 import math
 import sys
 
-# how to use: python CP4_eval_script.py ground_truth_sample_CP4.json correct_answer_sample_CP4.json submission_sample_CP4.json output_sample_CP4.txt
-output_file = open(sys.argv[4], "w")
+# how to use: python CP4_eval_script.py ground_truth_sample_CP4.json submission_sample_CP4.json output_sample_CP4.txt
+output_file = open(sys.argv[3], "w")
 
 ################################################
 # Obtain full list of ground truth ads and generate ground truth answer key
@@ -26,40 +26,41 @@ for entry in gt_list:
 
 ################################################
 # submission data
-with open(sys.argv[3]) as sub_file:
+with open(sys.argv[2]) as sub_file:
 	sub_list = json.load(sub_file)
 
 sub_rank = {}
 
 for entry in sub_list:
-	ads = []
-	uniq_ads = []
-	for answer in entry['answers']:
-		if '?ad' in answer.keys():
-			ads.append(answer['?ad'])
-		elif '?ads' in answer.keys():
-			ads.extend(answer['?ads'].split(','))
-	# Make de-duped list while preserving order (inefficient)
-	for ad in ads:
-		# Only consider ads found in the overall ground truth set
-		if ad in gt_ads:
-			if ad not in uniq_ads:
-				uniq_ads.append(ad)
 	# Correctly parse question id
 	q_id = entry['question_id'].split('.')[-1]
-	sub_rank[q_id] = uniq_ads
-################################################
+	# Only evaluate questions for which there is ground truth
+	if q_id in gt_key.keys():
+		ads = []
+		uniq_ads = []
+		for answer in entry['answers']:
+			if '?ad' in answer.keys():
+				ads.append(answer['?ad'])
+			elif '?ads' in answer.keys():
+				ads.extend(answer['?ads'].split(','))
+		# Make de-duped list while preserving order (INEFFICIENT)
+		for ad in ads:
+			# Only consider ads found in the overall ground truth set
+			if ad in gt_ads:
+				if ad not in uniq_ads:
+					uniq_ads.append(ad)
+		sub_rank[q_id] = uniq_ads
 
-# TODO: The formula used in the excel spreadsheet appears to be a hybribg
+################################################
+# DCG Calculations:
 for question in sub_rank.keys():
 	sub_ads = sub_rank[question]
 	ans_ads = gt_key[question]
-	print(question)
-	print(sub_ads)
-	print(ans_ads)
-	right_ads = [ad for ad in sub_ads if ad in ans_ads]
+#	# Debug
+#	print(question)
+#	print(sub_ads)
+#	print(ans_ads)
 
-	# DCG Calculations:
 	# Here we use:
 	# DCG = SUM( (2^rel_i - 1) / (log_2(i+1)) ) = SUM( 1 / (log_2(i+1)) )
 	# where:
@@ -78,10 +79,10 @@ for question in sub_rank.keys():
 
 	# Calculate max (a/k/a ideal) discounted cumulative gain (DCG).
 	# Given binary relevance weighting, max DCG can be calculated from
-	# the number of correct ad id submissions.
+	# the number of correct ad ids.
 	maxDCG = 0.0
 	i = 1
-	for ad in right_ads:
+	for ad in ans_ads:
 		maxDCG += 1 / (math.log(i+1,2))
 		i += 1
 
