@@ -1,0 +1,9 @@
+Question:  1842
+Normalized Discounted Cumulative Gain (DCG):  0.693426403617
+
+Question:  1486
+Normalized Discounted Cumulative Gain (DCG):  0.5
+
+Question:  41
+Normalized Discounted Cumulative Gain (DCG):  0.630929753571
+
