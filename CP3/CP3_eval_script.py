@@ -34,8 +34,10 @@ sub_urls = set([url.split("://")[-1] for url in sub_sites])
 domains = gt_domains & sub_domains
 print("Host Names", file=output_file)
 print("Ground truth Host Names:\t", len(gt_domains), file=output_file)
+print("Submission Host Names:\t", len(sub_domains), file=output_file)
 print("HostName Overlap:\t", len(domains), file=output_file)
 print("Recall:\t", (len(domains) * 100)/float(len(gt_domains)), file=output_file)
+print("Harvest Rate:\t", (len(domains) * 100)/float(len(sub_domains)), file=output_file)
 ################################################ 
 
 ################################################
@@ -43,6 +45,8 @@ print("Recall:\t", (len(domains) * 100)/float(len(gt_domains)), file=output_file
 results = gt_urls & sub_urls
 print("\nURLs", file=output_file)
 print("Ground truth Sample Size:\t", len(gt_urls), file=output_file)
+print("Submission URLs Set Size:\t", len(sub_urls), file=output_file)
 print("Overlap:\t", len(results), file=output_file)
 print("Recall:\t", (len(results) * 100)/float(len(gt_urls)), file=output_file)
+print("Harvest Rate:\t", (len(results) * 100)/float(len(sub_urls)), file=output_file)
 ################################################ 
