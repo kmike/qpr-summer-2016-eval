@@ -46,8 +46,6 @@ elif any([a != b for a, b in zip(sub_id, gt_id)]):
 ################################################ 
 
 else:
-    print gt_id[:10]
-    print sub_id[:10]
     fpr ,tpr, thresholds = roc_curve(gt_scores, sub_scores)
     auc = roc_auc_score(gt_scores, sub_scores)
     fig = plt.figure()
